@@ -5,6 +5,7 @@
     <li><strong>COMP2850 Task Manager</strong></li>
   </ul>
   <ul>
+    <li><label>Change Background</label><select name = "Change background", id = "BackgroundColor"><option class = "white">White</option><option class = "yellow">yellow</option><option>red</option></select>
     <li><a href="/tasks">Tasks</a></li>
     <li><a href="/health">Health</a></li>
   </ul>

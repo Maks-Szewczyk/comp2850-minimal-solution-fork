@@ -217,7 +217,7 @@ private const val ERROR_404_HTML =
                 margin: 0.5rem 0;
             }
             a {
-                color: #4A90E2;
+                color: #27cf51ff;
                 text-decoration: none;
             }
             a:hover {
