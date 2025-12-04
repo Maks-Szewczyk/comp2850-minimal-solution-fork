@@ -273,9 +273,7 @@ select:focus {
   }
 }
 
-[class~= "yellow"]{
-  background: #d1c951 
-}
+
 [class~= "white"]{
   background: #ffffff 
 }

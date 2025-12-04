@@ -4,6 +4,13 @@
 
 {% block content %}
 <article>
+<style>
+    .BackgroundColor{
+        [value~= "yellow"]{
+            background: #ebe86bff
+        }
+    }
+</style>
     <header>
         <h1>Task Manager</h1>
         <p>

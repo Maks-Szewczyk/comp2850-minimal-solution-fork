@@ -34,7 +34,7 @@
       position: static;
       width: auto;
       height: auto;
-      background: #1976d2;
+      background: #2e68beff;
       color: white;
       padding: 0.5rem 1rem;
       text-decoration: none;
@@ -71,4 +71,9 @@
   {# Include footer with helpful links and session info #}
   {% include "_layout/_footer.peb" %}
 </body>
+<body> 
+  background: #ec0707ff
+</body>
 </html>
+
+
