@@ -1,0 +1,104 @@
+package model
+
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.UUID
+
+/**
+ * Color data model.
+ * Represents a single todo item in the task manager.
+ *
+ * **Privacy note**: No PII stored. Tasks are anonymous and associated
+ * only with session IDs (also anonymous).
+ *
+ * @property Colorid Unique identifier (UUID format)
+ * @property hex Color hex (3-100 characters, validated)
+ */
+data class Color(
+    val Colorid: String = UUID.randomUUID().toString(),
+    val hex: String,
+) {
+    companion object {
+        /**
+         * Validate task title against business rules.
+         *
+         * **WCAG 2.2 AA compliance**:
+         * - Clear, specific error messages (3.3.1)
+         * - Errors should be linked to inputs via aria-describedby (3.3.1)
+         *
+         * **Rules**:
+         * - Required (cannot be blank)
+         * - Minimum 3 characters
+         * - Maximum 100 characters
+         *
+         * @param title Title to validate
+         * @return ValidationResult.Success or ValidationResult.Error(message)
+         */
+        fun validate(hex: String): HexValidationResult {
+            return when {
+                hex.isBlank() ->
+                    HexValidationResult.Error("Title is required. Please enter a task description.")
+
+                hex.length < 3 ->
+                    HexValidationResult.Error("Title must be at least 3 characters. Currently: ${title.length} characters.")
+
+                hex.length > 100 ->
+                    HexValidationResult.Error("Title must be less than 100 characters. Currently: ${title.length} characters.")
+
+                else -> HexValidationResult.Success
+            }
+        }
+    }
+
+    /**
+     * Convert task to CSV row format.
+     * Used by TaskStore for persistence.
+     *
+     * **CSV escaping**:
+     * - Title is quoted
+     * - Double quotes within title are escaped as ""
+     *
+     * @return CSV row string (no trailing newline)
+     */
+    fun toCSV(): String {
+        val escapedTitle = hex.replace("\"", "\"\"")
+        return "$id,\"$escapedTitle\""
+    }
+
+    /**
+     * Convert task to Pebble template context map.
+     * Used when rendering templates.
+     *
+     * **Template usage**:
+     * ```pebble
+     * <li id="task-{{ task.id }}">
+     *   <span>{{ task.title }}</span>
+     *   <time datetime="{{ task.createdAtISO }}">{{ task.createdAt }}</time>
+     * </li>
+     * ```
+     *
+     * @return Map suitable for Pebble template context
+     */
+    fun toPebbleContext(): Map<String, Any> = mapOf(
+        "Colorid" to Colorid,
+        "hex" to hex,
+    )
+}
+
+/**
+ * Validation result for task operations.
+ * Sealed class ensures exhaustive when() expressions.
+ */
+sealed class HexValidationResult {
+    /**
+     * Validation passed, operation can proceed.
+     */
+    data object Success : HexValidationResult()
+
+    /**
+     * Validation failed with specific error message.
+     *
+     * @property message Human-readable error for display to person using system
+     */
+    data class Error(val message: String) : HexValidationResult()
+}

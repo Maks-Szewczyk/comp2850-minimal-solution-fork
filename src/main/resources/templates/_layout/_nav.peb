@@ -4,14 +4,20 @@
   <ul>
     <li><strong>COMP2850 Task Manager</strong></li>
   </ul>
+    <form action="/tasks/colors/select" method="post" 
+        hx-target="body"
+        hx-post="/tasks/colors/select"
+        hx-swap="outerHTML">
+        <label>Change Background</label>
+        <select name = "hex" id = "background">
+        <option value = "#FFFFFF">White</option>
+        <option value = "#f2f8a2ff">yellow</option>
+        <option value = "#f88484ff">red</option>
+        </select>
+        <button type = "submit">Submit</button>
+    </form>
+
   <ul>
-    <li><label>Change Background</label>
-    <select name = "Change background", class = "BackgroundColor">
-    <option value = "white">White</option>
-    <option value = "yellow">yellow</option>
-    <option>red</option>
-    <button type = "submit">Submit</button>
-    </select>
     <li><a href="/tasks">Tasks</a></li>
     <li><a href="/health">Health</a></li>
   </ul>

@@ -14,6 +14,7 @@ import io.ktor.http.ContentType
 import io.ktor.util.AttributeKey
 import io.pebbletemplates.pebble.PebbleEngine
 import routes.configureTaskRoutes
+import routes.configureColorRoutes
 import routes.configureHealthCheck
 // import routes.configureEditRoutes // Week 7
 import utils.ReqIdKey
@@ -281,5 +282,6 @@ fun Application.configureRouting() {
         // Task management routes (main feature)
         configureTaskRoutes()
         // configureEditRoutes() // Week 7 feature
+        configureColorRoutes()
     }
 }
