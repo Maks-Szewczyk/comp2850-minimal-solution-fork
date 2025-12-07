@@ -5,9 +5,9 @@
     <li><strong>COMP2850 Task Manager</strong></li>
   </ul>
     <form action="/tasks/colors/select" method="post" 
-        hx-target="body"
         hx-post="/tasks/colors/select"
-        hx-swap="outerHTML">
+        hx-trigger="change"
+        hx-swap="none">
         <label>Change Background</label>
         <select name = "hex" id = "background">
         <option value = "#FFFFFF">White</option>

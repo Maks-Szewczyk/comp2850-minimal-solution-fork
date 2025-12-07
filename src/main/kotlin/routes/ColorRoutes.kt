@@ -36,7 +36,7 @@ fun Routing.configureColorRoutes(store: ColorStore = ColorStore()) {
  * Week 8: Handle paginated task list view with HTMX fragment support.
  */
 private suspend fun ApplicationCall.handleColor(store: ColorStore) {
-    val hexVal = receiveParameters()["hex"]?: run {
+    val hexVal = receiveParameters()["hex"]?.take(7) ?: run {
         println("Color Not recieved")
         return respond(HttpStatusCode.BadRequest)
     }
@@ -44,7 +44,24 @@ private suspend fun ApplicationCall.handleColor(store: ColorStore) {
     store.add(color)
 
     if (isHtmxRequest()) {
-        respondText("""<div id="status" hx-swap-oob="true">Color updated to $hexVal</div>""")
+        println(hexVal)
+        respondText(
+            """
+            <style id="color-theme" hx-swap-oob ="true">
+                :root{
+                --bg-color: $hexVal;
+                --article-color: $hexVal;
+                }
+                body{
+                background-color: var(--bg-color);
+                }
+                article{
+                background-color: var(--article-color);
+                }
+            </style>
+            """.trimIndent(),ContentType.Text.Html
+        )
+        println("color changed")
     } else {
         respondRedirect("/tasks")
     }

@@ -10,7 +10,18 @@
   
   {# HTMX for progressive enhancement #}
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-  
+  <style  id ="color-theme">
+    :root{
+      --bg-color: {{color}};
+      --article-color: {{color}};
+    }
+    body {
+      background-color: var(--bg-color) !important;
+    }
+    article{
+      background-color: var(--article-color) !important;
+    }
+  </style>
   <style>
     /* Visually hidden but accessible to screen readers (WCAG 1.3.1) */
     .visually-hidden {
@@ -70,9 +81,6 @@
   
   {# Include footer with helpful links and session info #}
   {% include "_layout/_footer.peb" %}
-</body>
-<body> 
-  background: #ec0707ff
 </body>
 </html>
 

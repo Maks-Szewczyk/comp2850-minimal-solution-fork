@@ -107,12 +107,15 @@ class ColorStore(
      * @param color Task to add
      */
     fun add(color: Color) {
+        writeAll(listOf(color))
         // Ensure CSV file exists with header row
+        /* 
         if (!csvFile.exists() || csvFile.length() == EMPTY_FILE_SIZE) {
             csvFile.parentFile?.mkdirs()
-            writeAll(listOf(color))
         }
+        */
 
+        /* 
         FileWriter(csvFile, true).use { writer ->
             CSVPrinter(writer, CSV_FORMAT).use { printer ->
                 printer.printRecord(
@@ -121,6 +124,7 @@ class ColorStore(
                 )
             }
         }
+        */
     }
 
     /**
