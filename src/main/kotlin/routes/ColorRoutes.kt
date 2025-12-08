@@ -58,6 +58,9 @@ private suspend fun ApplicationCall.handleColor(store: ColorStore) {
                 article{
                 background-color: var(--article-color);
                 }
+                input{
+                background-color: var(--article-color);
+                }
             </style>
             """.trimIndent(),ContentType.Text.Html
         )

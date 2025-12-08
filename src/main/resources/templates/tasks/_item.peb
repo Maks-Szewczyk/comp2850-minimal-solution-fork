@@ -13,6 +13,6 @@
         hx-target="#task-{{ task.id }}"
         hx-swap="outerHTML"
         hx-confirm="Delete the task '{{ task.title }}'?">
-    <button type="submit" aria-label="Delete task: {{ task.title }}">Delete</button>
+    <button type="submit" aria-label="Delete task: {{ task.title }}" id='red'>Delete</button>
   </form>
 </li>

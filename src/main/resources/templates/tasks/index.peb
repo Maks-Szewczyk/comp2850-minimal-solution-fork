@@ -4,6 +4,11 @@
 
 {% block content %}
 <article>
+    <style>
+        #red{
+            background-color: #f70404ff;
+        }
+    </style>
     <header>
         <h1>Task Manager</h1>
         <p>
