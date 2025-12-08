@@ -1,5 +1,5 @@
 <li id="task-{{ task.id }}" class="task-view">
-  <span class="task-title">{{ task.title }}</span>
+  <span class="task-title" style="font-size: 1.5rem !important;">{{ task.title }}</span>
 
   <form action="/tasks/{{ task.id }}/edit" method="get" style="display: inline;"
         hx-get="/tasks/{{ task.id }}/edit"
